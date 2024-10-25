@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>                    <!--링크식 @{}--> <!--타임리프로도 링크가 가능하다 라는걸 보여준다!-->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}"/>
+</head>
+<body>
+    <h1>표현식</h1>
+
+    <h2>주석</h2>
+
+    <!--
+        주석의 종류
+        parser-level 주석
+         - 정적인 페이지에서는 주석으로 있다가, thymeleaf 가 처리될 때
+           제거되어 클라이언트에게 노출되지 않는다.
+
+           prototype-only 주석
+            - 주석으로 존재하다가 thymeleaf 처리 후에는 화면에 보여지는 주석
+    -->
+
+    <ul>
+        <li>parser-level 주석</li>
+        <!--/* 주석 내용 */-->
+        <li>prototype-only 주석</li>
+        <!--/*/ 주석 내용 /*/-->
+    </ul>
+
+    <h2>표현식1. 변수 표현식</h2>
+
+    <!--
+        parameter 로 넘어온 경우는 param, session attribute 일 경우는 session,
+        model 에 담겨 온 경우는 따로 적지 않는다. (request 라고 쓰면 오히려 에러 발생)
+    -->
+
+    <p th:text="${param.title}"></p>
+    <p th:text="${param.no[0]}"></p>
+    <p th:text="${param.no[1]}"></p>
+    <!--파라미터가 존재하지 않으면 무시하지 않고 에러 발생-->
+    <!--    <p th:text="${param.no[2]}"></p> &lt;!&ndash;request 같은 경우에는 에러가 난다.&ndash;&gt;-->
+
+    <h2>표현식 2. 선택 변수 표현식 ${.} *{} </h2>
+    <!--  1번째 방법  -->
+    <p th:text="${member.name}"></p>
+    <!--  2번째 방법  -->
+    <p th:object="${member}" th:text="*{age}"></p>
+    <!-- 3번째 방법 -->
+    <div th:object="${member}">
+        <p th:text="*{address}"></p>
+    </div>
+
+    <h2>HTML 출력 th:text , th:utext </h2>
+    <h3>
+        th:text 는 escape 가 적용되어 태그를 단순 문자열로 처리하지만,
+        th:utext 는 적용되지 않아 태그를 태그로써 인식할 수 있다..
+        (DB에 태그가 포함된 문자열을 저장했을 시 유용하다.)
+    </h3>
+        <ul>
+            <li th:text="${hello}"></li>
+            <li th:utext="${hello}"></li>
+        </ul>
+
+    <h2>리터럴 치환 ||</h2>
+    <h3> ' + ' 를 쓰지 않고 문자열 합치기 </h3>   <!--☆★-->
+    <p th:object="${member}" th:text="|name = '*{name}'|"></p>
+    <p th:object="${member}" th:text="|age = '*{age}'|"></p>
+    <p th:object="${member}" th:text="|gender = '*{gender}'|"></p>
+    <p th:object="${member}" th:text="|address = '*{address}'|"></p>
+
+</body>
+</html>

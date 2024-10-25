@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1 th:text="${message}"></h1>
+
+    <div th:if="${img != null}">
+        <img th:src="@{${img}}" style="max-width: 20%">
+            <!--특정 속성을 url 로 변환-->
+    </div>
+
+    <h1 th:text="${messagemultiple}"></h1>
+
+    <div th:if="${imgmultiple != null}">   <!--리스트로 뿌려줬으면 배열로 받아야 한다!  여기서 특정 태그에 css추가하고 싶으면 css파일 만들어서 추가해 주면된다. chap5,6 처럼 한다!-->
+        <div th:each= "multiimg, iter : ${imgmultiple}">
+            <img th:src="@{${multiimg}}" style="max-width: 20%">
+            <p th:text="${imgDescriptions[iter.index]}"></p>
+        </div>
+    </div>
+</body>
+</html>

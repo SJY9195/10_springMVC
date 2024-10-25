@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!--
+        Thymeleaf 가 제공하는 Fragment 문법은
+        공통 영역을 처리하기 위해서 존재한다..
+         일반 웹 페이지의 경우 공통으로 반복되는 영역이 많은데
+         대표적으로 Header, Nav, Footer, Aside 와 같은 영역이다.
+         만약 위의 영역을 매번 페이지에 추가하게 되면 Nav 가 변경되어야 하는 경우
+         반복적인 작업을 페이지 수 만큼 반복해야 할 것이다..
+         이러한 문제를 해결하기 위해서 Fragment 문법을 이용하여 공통 영역을 처리하여
+         번거로운 작업을 해소하며 유지보수에 용이한 코드를 작성할 수 있다..   // Nav를 눌렀을 때 바뀐부분까지 포함해서 Component 가 변경된다! Fragment가 없으면 nav의 Component만 변경된다!
+    -->
+
+    <header th:fragment="headerFragment" class="header">  <!-- 특정 html을 정해 놓고 Fragment 를 지정해 둔다!-->
+        <h1>Header Fragment</h1>
+    </header>
+</body>
+</html>

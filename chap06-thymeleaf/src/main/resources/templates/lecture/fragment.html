@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .header{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+
+
+    <!-- th:replace - 해당 영역에 있는 코드를 대체하는 문법.
+     기존의 블록을 지우고 불러온 Fragment 로 대체한다.-->
+    <header th:replace="~{/common/header :: headerFragment}">
+        <h1>나는 Header</h1>
+    </header>
+
+    <!-- fragment 에 매개변수를 전달하여 동적으로 ui 를 꾸미는 것도 가능하다.-->
+    <aside th:replace="~{/common/aside::asideFragment(${test1}, ${test2})}"></aside>
+
+    <!--
+    th:insert 는 해당 영역에 삽입하고자 하는 Fragment 를 삽입하는 문법으로
+    블록을 기준으로 내부의 값을 제거하고 불러온 Fragment 로 삽입한다.
+    -->
+    <footer th:insert="~{/common/footer::footerFragment}">  <!--insert는 Footer안에 Footer 클래스가 있다. 즉, 아예 바꾸는게 아니라 안에 넣어 주는 것이다.-->
+        <h2>나는 Footer</h2>
+    </footer>
+
+</body>
+</html>
