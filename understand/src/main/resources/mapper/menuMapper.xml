@@ -45,6 +45,26 @@
         )
     </insert>
 
+    <update id="update" parameterType="com.ohgiraffers.understand.dto.MenuDTO">
+        UPDATE TBL_MENU
+        <trim prefix="SET" prefixOverrides=",">
+            <if test="name != ''">
+             MENU_NAME = #{name}
+            </if>
+            <if test="price != 0 and price != null">
+                MENU_PRICE = #{price}
+            </if>
+            <if test="categoryCode != null and categoryCode != 0">
+                , CATEGORY_CODE = #{categoryCode}
+            </if>
+        </trim>
+            WHERE MENU_CODE = #{code}
+    </update>
 
+    <delete id="delete" parameterType="com.ohgiraffers.understand.dto.MenuDTO">
+            DELETE
+                FROM TBL_MENU
+            WHERE MENU_CODE = #{code}
+    </delete>
 
 </mapper>

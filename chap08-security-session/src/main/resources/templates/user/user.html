@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div sec:authorize="hasAnyAuthority('USER')">   <!--권한이 있으면 띄워준다! 시큐리티 구현하려면 몇가지 클래스가 필요한데, 이게 그중 하나 역할을 해준다.-->
+    <p>welcome, user!</p>
+</div>
+</body>
+</html>

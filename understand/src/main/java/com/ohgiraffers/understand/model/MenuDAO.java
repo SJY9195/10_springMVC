@@ -15,4 +15,8 @@ public interface MenuDAO {
     List<MenuDTO> selectAllMenu();
 
     int regist(MenuDTO menuDTO);
+
+    int update(MenuDTO menuDTO);
+
+    int delete(MenuDTO menuDTO);
 }
